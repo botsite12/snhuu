@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HỒ SƠ MẬT: ĐẶNG CHIẾN HỮU</title>
+    <style>
+        body { margin:0; background:#1a1a1a; color:#ffcc00; font-family: 'Courier New', monospace; display:flex; justify-content:center; align-items:center; height:100vh; flex-direction:column; text-align:center; }
+        .box { border: 3px dashed #ffcc00; padding: 30px; width: 80%; max-width: 400px; }
+        .btn { padding:15px 30px; background:#ffcc00; color:#000; font-weight:bold; cursor:pointer; border:none; margin-top:20px; font-size:1.2rem; }
+        
+        /* Loading styles */
+        #loading-screen { display:none; }
+        .progress-bar { width: 100%; height: 20px; border: 2px solid #ffcc00; margin-top: 20px; }
+        .progress-fill { height: 100%; width: 0%; background: #ffcc00; animation: load 3s linear forwards; }
+        @keyframes load { from {width: 0%;} to {width: 100%;} }
+        
+        #main-content { display:none; }
+    </style>
+</head>
+<body>
+
+    <audio id="sfx-click" src="https://www.soundjay.com/buttons_c2026/sounds/button-10.mp3"></audio>
+    <audio id="sfx-loading" src="https://www.soundjay.com/buttons_c2026/sounds/beep-07a.mp3" loop></audio>
+
+    <div class="box" id="start-screen">
+        <h2>⚠️ CẢNH BÁO MẬT</h2>
+        <p>Danh tính: Đặng Chiến Hữu</p>
+        <button class="btn" onclick="startLoading()">XÁC NHẬN</button>
+    </div>
+
+    <div class="box" id="loading-screen">
+        <p>Đang quét dữ liệu đẹp trai...</p>
+        <div class="progress-bar"><div class="progress-fill"></div></div>
+    </div>
+
+    <div id="main-content" class="box">
+        <h1>HAPPY BIRTHDAY!</h1>
+        <p style="font-size:1.1rem; font-weight:bold;">"Độ đẹp trai của Chiến Hữu đã vượt ngưỡng an toàn!"</p>
+        <audio controls id="myAudio" style="width:100%">
+            <source src="https://www.dropbox.com/scl/fi/k427x2uumfmw2vyfp858a/luvvoice.com-20260306-WLijBd.mp3?rlkey=hkfhoss4wmr9g4ou4zm0cjzl7&st=063ibm6l&dl=1" type="audio/mpeg">
+        </audio>
+    </div>
+
+    <script>
+        function startLoading() {
+            // 1. Phát âm thanh nhấn nút
+            document.getElementById('sfx-click').play();
+            
+            // 2. Chuyển màn hình và bắt đầu tiếng Loading
+            document.getElementById('start-screen').style.display = 'none';
+            document.getElementById('loading-screen').style.display = 'block';
+            document.getElementById('sfx-loading').play();
+
+            // 3. Sau 3 giây: Tắt Loading, bật Kết quả + Nhạc chính
+            setTimeout(() => {
+                document.getElementById('sfx-loading').pause(); // Tắt tiếng loading
+                document.getElementById('loading-screen').style.display = 'none';
+                document.getElementById('main-content').style.display = 'block';
+                document.getElementById('myAudio').play();
+            }, 3000);
+        }
+    </script>
+</body>
+</html>
